@@ -55,21 +55,18 @@ theta = -pi/2:pi/40:pi/2;
 for i=1:length(x)
    Pcirculo(:,:,i) =S* rt2tr(eye(3),[x(i)+ 170 y(i) 0]');
 end
-%% SEMICIRCULO P3-P4-P5
+%% Union de segmentos
 
-%% SEGMENTO P5-P1
-%cinematica inversa
 T_traj = ctraj(T_p5,T_p1,20);
 tra = cat(3,Pcirculo,T_traj);
-%% SEGMENTO P1-P2
-%cinematica inversa
+
 T_traj = ctraj(T_p1,T_p2,20);
 tra = cat(3,tra,T_traj);
-%% SEGMENTO P2-P3
-%cinematica inversa
+
 T_traj = ctraj(T_p2,T_p3,20);
 tra = cat(3,tra,T_traj);
 
+%% cinematica inversa
 q=bot1.ikine(tra(:,:,:));
 
 
